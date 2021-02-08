@@ -13,6 +13,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import { UiContext } from '../context/UiContext';
 import { EntryPage } from '../pages/EntryPage';
 import { ColaPage } from '../pages/ColaPage';
 import { CreateTicketPage } from '../pages/CreateTicketPage';
@@ -21,11 +22,14 @@ import { DesktopPage } from '../pages/DesktopPage';
 const { Sider, Content } = Layout;
 
 export const TicketRouter = () => {
+
+  const { ocultarMenu } = React.useContext(UiContext)
+
   return (
     <Router>
       <Layout style={{ height: '100%' }}>
         <Sider
-          hidden={false}
+          hidden={ocultarMenu}
           collapsedWidth="0"
           breakpoint="md"
         >
