@@ -1,6 +1,8 @@
 import * as React from 'react'
+import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, InputNumber } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
+
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,8 +15,11 @@ const tailLayout = {
 
 export const FormEntry = () => {
 
+  const history = useHistory()     
+
   const onFinish = (values) => {
     console.log('Success:', values);
+    history.push('/escritorio')
   };
 
   const onFinishFailed = (errorInfo ) => {
