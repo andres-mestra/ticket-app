@@ -24,7 +24,11 @@ export const TicketRouter = () => {
   return (
     <Router>
       <Layout style={{ height: '100vh' }}>
-        <Sider hidden={false}>
+        <Sider
+          hidden={false}
+          collapsedWidth="0"
+          breakpoint="md"
+        >
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
@@ -55,11 +59,11 @@ export const TicketRouter = () => {
             }}
           >
             <Switch>
-              <Route path="/ingresar" component={ EntryPage } />
-              <Route path="/cola" component={ ColaPage } />
-              <Route path="/crear" component={ CreateTicketPage } />
+              <Route path="/ingresar" component={EntryPage} />
+              <Route path="/cola" component={ColaPage} />
+              <Route path="/crear" component={CreateTicketPage} />
 
-              <Route path="/escritorio" component={ DesktopPage } />
+              <Route path="/escritorio" component={DesktopPage} />
               <Redirect to="/ingresar" />
             </Switch>
           </Content>
