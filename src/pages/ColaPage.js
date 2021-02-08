@@ -1,7 +1,9 @@
 import * as  React from 'react'
-import { Col, Row, Typography, List, Card, Tag, Divider } from 'antd'
+import { Col, Row, Typography, List, Divider } from 'antd'
+import { TicketCard } from '../components/TicketCard';
+import { MetaTicket } from '../components/MetaTicket';
 
-const { Title, Text } = Typography
+const { Title } = Typography
 
 const data = [
   {
@@ -53,15 +55,7 @@ export const ColaPage = () => {
             dataSource={data.slice(0, 3)}
             renderItem={(item) => (
               <List.Item>
-                <Card
-                  style={{ width: 300, marginTop: 16 }}
-                  actions={[
-                    <Tag color="volcano">{item.agente}</Tag>,
-                    <Tag color="magenta">Escritorio: {item.escritorio}</Tag>
-                  ]}
-                >
-                  <Title>No. {item.ticketNo}</Title>
-                </Card>
+                <TicketCard {...item} />
               </List.Item>
             )}
           />
@@ -75,12 +69,7 @@ export const ColaPage = () => {
               <List.Item.Meta
                 title={`Ticket No. ${item.ticketNo}`}
                 description={
-                  <>
-                    <Text type="secondary">En el escritorio: </Text>
-                    <Tag color="magenta">{item.escritorio}</Tag>
-                    <Text type="secondary">Agente: </Text>
-                    <Tag color="volcano">{item.agente}</Tag>
-                  </>
+                  <MetaTicket {...item} />
                 }
               />
             )}
