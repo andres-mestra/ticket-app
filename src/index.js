@@ -2,9 +2,9 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import App from './App';
+import TicketApp from './TicketApp';
 
 ReactDOM.render(
-  <App />,
+  <TicketApp />,
   document.getElementById('root')
 );
