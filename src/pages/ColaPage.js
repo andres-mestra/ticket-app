@@ -1,5 +1,6 @@
 import * as  React from 'react'
 import { Col, Row, Typography, List, Divider } from 'antd'
+import { useHideMenu } from '../hooks/useHideMenu';
 import { TicketCard } from '../components/TicketCard';
 import { MetaTicket } from '../components/MetaTicket';
 
@@ -46,6 +47,9 @@ const data = [
 
 
 export const ColaPage = () => {
+
+  useHideMenu(true);
+
   return (
     <>
       <Title level={1}>Atendiendo al cliente</Title>
