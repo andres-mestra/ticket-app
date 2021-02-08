@@ -23,7 +23,7 @@ const { Sider, Content } = Layout;
 export const TicketRouter = () => {
   return (
     <Router>
-      <Layout style={{ height: '100vh' }}>
+      <Layout style={{ height: '100%' }}>
         <Sider
           hidden={false}
           collapsedWidth="0"
