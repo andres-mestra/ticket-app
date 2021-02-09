@@ -3,7 +3,7 @@ import { Card, Tag, Typography } from 'antd'
 
 const { Title } = Typography
 
-export const TicketCard = ({ agente, escritorio, ticketNo }) => {
+export const TicketCard = ({ agente, escritorio, numero }) => {
   return (
     <Card
       style={{ width: 300, marginTop: 16 }}
@@ -12,7 +12,7 @@ export const TicketCard = ({ agente, escritorio, ticketNo }) => {
         <Tag color="magenta">Escritorio: {escritorio}</Tag>
       ]}
     >
-      <Title>No. {ticketNo}</Title>
+      <Title>No. {numero}</Title>
     </Card>
   )
 }
