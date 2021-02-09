@@ -1,7 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import { Button, Col, Divider, Row, Typography } from 'antd'
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons'
+import { SocketContext } from '../context/SocketContext'
 import { useHideMenu } from '../hooks/useHideMenu'
 import { getUserStorage } from '../helpers/getUserStorage'
 
@@ -11,6 +12,8 @@ export const DesktopPage = () => {
 
   useHideMenu(false);
   const [usuario] = React.useState(getUserStorage())
+  const { socket } = React.useContext(SocketContext)
+  const [ticket, setTicket] = React.useState(null)
   const history = useHistory()
 
 
@@ -20,7 +23,9 @@ export const DesktopPage = () => {
   }
 
   const handleNextTicket = () => {
-
+    socket.emit('siguiente-ticket-trabajar', usuario , (ticket) => {
+      setTicket(ticket);
+    });
   }
   
 
@@ -54,10 +59,14 @@ export const DesktopPage = () => {
       <Row>
         <Col>
           <Text>Esta atendiendo el ticket numero:  </Text>
-          <Text
-            style={{ fontSize: '1.5em' }}
-            type="danger"
-          >55</Text>
+          {
+            ticket ? (
+              <Text
+                style={{ fontSize: '1.5em' }}
+                type="danger"
+              >{ ticket.numero} </Text>
+            ) : <Text style={{ fontWeight: 'bold' }}>No hay tickets en cola</Text>
+          }
         </Col>
       </Row>
 
