@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Form, Input, Button, InputNumber } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
+import { getUserStorage } from '../helpers/getUserStorage';
 
 
 const layout = {
@@ -16,15 +17,25 @@ const tailLayout = {
 export const FormEntry = () => {
 
   const history = useHistory()     
+  const [usuario] = React.useState(getUserStorage())
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  console.log(usuario)
+
+  const onFinish = ({ agente, escritorio }) => {
+
+    localStorage.setItem('agente', agente);
+    localStorage.setItem('escritorio', escritorio);
+
     history.push('/escritorio')
   };
 
   const onFinishFailed = (errorInfo ) => {
     console.log('Failed:', errorInfo);
   };
+
+  if( usuario.agente && usuario.escritorio ){
+    return <Redirect to="/escritorio" />
+  }
 
   return (
     <Form
@@ -36,7 +47,7 @@ export const FormEntry = () => {
     >
       <Form.Item
         label="Nombre agente"
-        name="Agente"
+        name="agente"
         rules={[{ required: true, message: 'Por favor ingrese  su nombre!' }]}
       >
         <Input />
