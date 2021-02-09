@@ -4,6 +4,7 @@ import { useHideMenu } from '../hooks/useHideMenu';
 import { TicketCard } from '../components/TicketCard';
 import { SocketContext } from '../context/SocketContext';
 import { MetaTicket } from '../components/MetaTicket';
+import { getUltimos } from '../helpers/getUltimos';
 
 const { Title } = Typography
 
@@ -23,6 +24,10 @@ export const ColaPage = () => {
       socket.off('ticket-asignado')
     }
   },[socket])
+
+  React.useEffect(() => {
+    getUltimos().then( setTickets )
+  },[])
 
   return (
     <>
